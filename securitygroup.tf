@@ -22,3 +22,12 @@ module "http_redirect_sg" {
   port        = 8080
   cidr_blocks = ["0.0.0.0/0"]
 }
+
+# nginx
+module "nginx_sg" {
+  source      = "./security_group"
+  name        = "${var.project-name}-nginx-sg"
+  vpc_id      = aws_vpc.vpc_main.id
+  port        = 80
+  cidr_blocks = [aws_vpc.vpc_main.cidr_block]
+}
