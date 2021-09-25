@@ -17,7 +17,7 @@ variable "manage-gip" {
 
 ## Project Name
 variable "project-name" {
-  default = "terraform_fargate"
+  default = "iacontainer"
 }
 
 ## env
