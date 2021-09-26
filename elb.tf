@@ -25,7 +25,7 @@ locals {
       healthy_threshold   = 3
       interval            = 15
       matcher             = 200
-      path                = "/healthcheck"
+      path                = "/"
       port                = "traffic-port"
       protocol            = "HTTP"
       timeout             = 5

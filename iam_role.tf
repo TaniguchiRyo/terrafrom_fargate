@@ -1,6 +1,6 @@
-module "describe_regions_for_ec2" {
+module "ecs_task_execution_role" {
   source     = "./iam_role"
-  name       = "describe-regions-for-ec2"
-  identifier = "ec2.amazonaws.com"
-  policy     = data.aws_iam_policy_document.allow_describe_regions.json
+  name       = "ecs-task-execution"
+  identifier = "ecs-tasks.amazonaws.com"
+  policy     = data.aws_iam_policy_document.ecs_task_execution.json
 }

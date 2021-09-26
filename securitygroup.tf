@@ -31,3 +31,15 @@ module "nginx_sg" {
   port        = 80
   cidr_blocks = [aws_vpc.vpc_main.cidr_block]
 }
+
+# VPC endpoint
+module "vpc_endpoint" {
+  source = "./security_group"
+  name   = "${var.project-name}-vpc-endpoint"
+  vpc_id = aws_vpc.vpc_main.id
+  port   = 443
+  cidr_blocks = [
+    aws_subnet.private-a.cidr_block,
+    aws_subnet.private-c.cidr_block
+  ]
+}
