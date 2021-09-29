@@ -1,3 +1,4 @@
+# ALB Log
 resource "aws_s3_bucket" "alb_log" {
   bucket = "${var.project-name}-alb-log"
 
@@ -26,6 +27,19 @@ data "aws_iam_policy_document" "alb_log" {
     principals {
       type        = "AWS"
       identifiers = [data.aws_elb_service_account.main.arn]
+    }
+  }
+}
+
+# CodePipeline Artifact
+resource "aws_s3_bucket" "artifact" {
+  bucket = "${var.project-name}-artifact"
+
+  lifecycle_rule {
+    enabled = true
+
+    expiration {
+      days = "180"
     }
   }
 }

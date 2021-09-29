@@ -43,3 +43,12 @@ module "vpc_endpoint" {
     aws_subnet.private-c.cidr_block
   ]
 }
+
+# RDS
+module "rds_sg" {
+  source      = "./security_group"
+  name        = "${var.project-name}-rds-sg"
+  vpc_id      = aws_vpc.vpc_main.id
+  port        = 3306
+  cidr_blocks = [aws_vpc.vpc_main.cidr_block]
+}
