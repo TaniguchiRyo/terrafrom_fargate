@@ -9,7 +9,7 @@ phases:
   pre_build:
     commands:
     - $(aws ecr get-login --region $AWS_REGION_NAME --no-include-email)
-    - REPO=$(aws ecr describe-repositories --repository-names example --output text --query "repositories[0].repositoryUri")
+    - REPO=$(aws ecr describe-repositories --repository-names $ECR_REPOSITORY_NAME --output text --query "repositories[0].repositoryUri")
     - IMAGE=$REPO:latest
   build:
     commands:
@@ -17,6 +17,6 @@ phases:
     - docker push $IMAGE
   post_build:
     commands:
-    - printf '[{"name":"iacontainer-ecr","imageUri":"%s"}]' $IMAGE > imagedefinitions.json
+    - printf '[{"name":"example","imageUri":"%s"}]' $IMAGE > imagedefinitions.json
 artifacts:
   files: imagedefinitions.json
