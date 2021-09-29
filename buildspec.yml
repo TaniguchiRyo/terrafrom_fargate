@@ -17,6 +17,6 @@ phases:
     - docker push $IMAGE
   post_build:
     commands:
-    - printf '[{"name":"example","imageUri":"%s"}]' $IMAGE > imagedefinitions.json
+    - printf '[{"name":"iacontainer-ecr","imageUri":"%s"}]' $IMAGE > imagedefinitions.json
 artifacts:
   files: imagedefinitions.json
